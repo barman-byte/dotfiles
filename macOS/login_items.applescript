@@ -2,7 +2,6 @@
 set login_item_list to {¬
     "AirBar",¬
     "Bartender 3",¬
-    "Docker",¬
     "Dropbox",¬
     "Hammerspoon",¬
     "Numi",¬
