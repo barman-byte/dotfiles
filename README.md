@@ -1,6 +1,3 @@
-# [My macOS Empire](https://medium.com/@sam_hosseini/build-a-macos-empire-a0c83879ac24) 👑
-[![my macOS empire](https://i.imgur.com/dSbidA6.png)](https://vimeo.com/samhosseini/my-macos-empire "Watch a sample executation of my macOS bootstrapping script")
-
 
 * On a fresh macOS:
 
