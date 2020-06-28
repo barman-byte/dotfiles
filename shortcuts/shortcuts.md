@@ -17,7 +17,7 @@
 
 ## Hammerspoon shortcuts
 
-[window_management.lua](https://github.com/sam-hosseini/dotfiles/blob/master/hammerspoon/window_management.lua)
+[window_management.lua](https://github.com/barman-byte/dotfiles/blob/master/hammerspoon/window_management.lua)
 
 | Shortcut  | Comment                               |
 | --------- | --------------------------            |
@@ -30,7 +30,7 @@
 
 ## Karabiner shortcuts
 
-[karabiner.json](https://github.com/sam-hosseini/dotfiles/blob/master/karabiner/karabiner.json)
+[karabiner.json](https://github.com/barman-byte/dotfiles/blob/master/karabiner/karabiner.json)
 
 Directly inspired from amazing [Capslock Enhancement](https://github.com/Vonng/Capslock) project
 
