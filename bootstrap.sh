@@ -106,7 +106,7 @@ function install_packages_with_brewfile() {
         fi
     fi
 
-    if (brew --prefix)/opt/fzf/install; then
+    if `(brew --prefix)`/opt/fzf/install; then
         substep "fzf installation succeeded"
     else 
         error "fzf installation failed"
