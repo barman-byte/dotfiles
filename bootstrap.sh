@@ -299,6 +299,7 @@ function setup_tmux() {
 function setup_symlinks() {
     APPLICATION_SUPPORT=~/Library/Application\ Support
     POWERLINE_ROOT_REPO=/usr/local/lib/python3.8/site-packages
+    ZSH=~/.oh-my-zsh
 
     info "Setting up symlinks"
     symlink "git" ${DOTFILES_REPO}/git/gitconfig ~/.gitconfig
