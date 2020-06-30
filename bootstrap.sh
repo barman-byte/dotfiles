@@ -15,7 +15,7 @@ main() {
     setup_tmux
     update_hosts_file
     setup_macOS_defaults
-    update_login_items
+    # update_login_items
 }
 
 DOTFILES_REPO=~/personal/dotfiles
@@ -309,21 +309,21 @@ function setup_symlinks() {
     # symlink "vim" ${DOTFILES_REPO}/vim/vimrc ~/.vimrc
 
     # Disable shell login message
-    symlink "git" "${DOTFILES_REPO}/git/.gitconfig" ~/.gitconfig
-    symlink "nvim:init" "${DOTFILES_REPO}/nvim/init.vim" ~/.config/nvim
-    symlink "nvim:setting" "${DOTFILES_REPO}/nvim/coc-settings.json" ~/.config/nvim
+    symlink "git" "${DOTFILES_REPO}/git/gitconfig" ~/.gitconfig
+    symlink "nvim:init" "${DOTFILES_REPO}/nvim/init.vim" ~/.config/nvim/init.vim
+    symlink "nvim:setting" "${DOTFILES_REPO}/nvim/coc-settings.json" ~/.config/nvim/coc-settings.json
 
     symlink "alias" "${DOTFILES_REPO}/zsh/.alias.zsh" ~/.alias.zsh
     symlink "fzf" "${DOTFILES_REPO}/zsh/.fzf.zsh" ~/.fzf.zsh
     symlink "iterm2" "${DOTFILES_REPO}/zsh/.iterm2.zsh" ~/.iterm2.zsh
     symlink "p10k" "${DOTFILES_REPO}/zsh/.p10k.zsh" ~/.p10k.zsh
     symlink "riot" "${DOTFILES_REPO}/zsh/.riot.zsh" ~/.riot.zsh
-    symlink "variable" "${DOTFILES_REPO}/zsh/.variables.zsh" ~//.variables.zsh
+    symlink "variable" "${DOTFILES_REPO}/zsh/.variables.zsh" ~/.variables.zsh
     symlink "zsh" "${DOTFILES_REPO}/zsh/.zshrc" ~/.zshrc
 
-    symlink "nodenv" "${DOTFILES_REPO}/zsh/plugins/nodenv" "$ZSH/custom/plugins"
-    symlink "zsh-vim-mode" "${DOTFILES_REPO}/zsh/plugins/zsh-vim-mode" "$ZSH/custom/plugins"
-    symlink "fast-syntax-highlighting" "${DOTFILES_REPO}/zsh/plugins/fast-syntax-highlighting" "$ZSH/custom/plugins"
+    symlink "nodenv" "${DOTFILES_REPO}/zsh/plugins/nodenv" "$ZSH/custom/plugins/nodenv"
+    symlink "zsh-vim-mode" "${DOTFILES_REPO}/zsh/plugins/zsh-vim-mode" "$ZSH/custom/plugins/zsh-vim-mode"
+    symlink "fast-syntax-highlighting" "${DOTFILES_REPO}/zsh/plugins/fast-syntax-highlighting" "$ZSH/custom/plugins/fast-syntax-highlighting"
 
     symlink "fzf:find" "${DOTFILES_REPO}/bin/fzf-find" "/usr/local/bin/fzf-find"
     chmod 755 /usr/local/bin/fzf-find
