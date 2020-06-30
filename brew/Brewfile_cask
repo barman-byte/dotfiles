@@ -28,7 +28,7 @@ cask "libreoffice"
 cask "numi"
 cask "osxfuse" # to extend macOS file handling capabilities via third-party file system. sshfs uses this e.g.
 # cask "postico"
-cask rectangle
+cask "rectangle"
 # cask "robo-3t"
 # cask "signal"
 cask "slack"
