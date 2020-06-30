@@ -6,7 +6,8 @@ main() {
     clone_dotfiles_repo
     install_homebrew
     install_packages_with_brewfile
-    change_shell_to_fish
+    # change_shell_to_fish
+    change_shell_to_zsh
     install_pip_packages
     install_yarn_packages
     setup_symlinks # needed for setup_vim and setup_tmux
@@ -104,6 +105,45 @@ function install_packages_with_brewfile() {
             exit 1
         fi
     fi
+
+    if (brew --prefix)/opt/fzf/install; then
+        substep "fzf installation succeeded"
+    else 
+        error "fzf installation failed"
+        exit 1
+    fi 
+    
+}
+
+function change_shell_to_zsh() {
+    info "Zsh shell setup"
+    if grep --quiet zsh <<< "$SHELL"; then
+        success "Zsh shell already exists"
+    else
+        user=$(whoami)
+        substep "Adding zsh executable to /etc/shells"
+        if grep --fixed-strings --line-regexp --quiet \
+            "/usr/local/bin/zsh" /etc/shells; then
+            substep "zsh executable already exists in /etc/shells"
+        else
+            if echo /usr/local/bin/zsh | sudo tee -a /etc/shells > /dev/null;
+            then
+                substep "zsh executable successfully added to /etc/shells"
+            else
+                error "Failed to add zsh executable to /etc/shells"
+                exit 1
+            fi
+        fi
+        substep "Switching shell to zsh for \"${user}\""
+        if sudo chsh -s /usr/local/bin/zsh "$user"; then
+            success "zsh shell successfully set for \"${user}\""
+        else
+            error "Please try setting zsh shell again"
+        fi
+    fi
+
+    git subtree pull --prefix ${DOTFILES_REPO}/zsh/plugins/zsh-vim-mode https://github.com/softmoth/zsh-vim-mode.git master --squash
+    git subtree pull --prefix ${DOTFILES_REPO}/zsh/plugins/fast-syntax-highlighting https://github.com/zdharma/fast-syntax-highlighting.git master --squash
 }
 
 function change_shell_to_fish() {
@@ -263,18 +303,43 @@ function setup_symlinks() {
     info "Setting up symlinks"
     symlink "git" ${DOTFILES_REPO}/git/gitconfig ~/.gitconfig
     symlink "hammerspoon" ${DOTFILES_REPO}/hammerspoon ~/.hammerspoon
-    symlink "karabiner" ${DOTFILES_REPO}/karabiner ~/.config/karabiner
+    # symlink "karabiner" ${DOTFILES_REPO}/karabiner ~/.config/karabiner
     symlink "powerline" ${DOTFILES_REPO}/powerline ${POWERLINE_ROOT_REPO}/powerline/config_files
     symlink "tmux" ${DOTFILES_REPO}/tmux/tmux.conf ~/.tmux.conf
-    symlink "vim" ${DOTFILES_REPO}/vim/vimrc ~/.vimrc
+    # symlink "vim" ${DOTFILES_REPO}/vim/vimrc ~/.vimrc
 
     # Disable shell login message
-    symlink "hushlogin" /dev/null ~/.hushlogin
+    symlink "git" "${DOTFILES_REPO}/git/.gitconfig" ~/.gitconfig
+    symlink "nvim:init" "${DOTFILES_REPO}/nvim/init.vim" ~/.config/nvim
+    symlink "nvim:setting" "${DOTFILES_REPO}/nvim/coc-settings.json" ~/.config/nvim
 
-    symlink "fish:completions" ${DOTFILES_REPO}/fish/completions ~/.config/fish/completions
-    symlink "fish:functions"   ${DOTFILES_REPO}/fish/functions   ~/.config/fish/functions
-    symlink "fish:config.fish" ${DOTFILES_REPO}/fish/config.fish ~/.config/fish/config.fish
-    symlink "fish:oh_my_fish"  ${DOTFILES_REPO}/fish/oh_my_fish  ~/.config/omf
+    symlink "alias" "${DOTFILES_REPO}/zsh/.alias.zsh" ~/.alias.zsh
+    symlink "fzf" "${DOTFILES_REPO}/zsh/.fzf.zsh" ~/.fzf.zsh
+    symlink "iterm2" "${DOTFILES_REPO}/zsh/.iterm2.zsh" ~/.iterm2.zsh
+    symlink "p10k" "${DOTFILES_REPO}/zsh/.p10k.zsh" ~/.p10k.zsh
+    symlink "riot" "${DOTFILES_REPO}/zsh/.riot.zsh" ~/.riot.zsh
+    symlink "variable" "${DOTFILES_REPO}/zsh/.variables.zsh" ~//.variables.zsh
+    symlink "zsh" "${DOTFILES_REPO}/zsh/.zshrc" ~/.zshrc
+
+    symlink "nodenv" "${DOTFILES_REPO}/zsh/plugins/nodenv" "$ZSH/custom/plugins"
+    symlink "zsh-vim-mode" "${DOTFILES_REPO}/zsh/plugins/zsh-vim-mode" "$ZSH/custom/plugins"
+    symlink "fast-syntax-highlighting" "${DOTFILES_REPO}/zsh/plugins/fast-syntax-highlighting" "$ZSH/custom/plugins"
+
+    symlink "fzf:find" "${DOTFILES_REPO}/bin/fzf-find" "/usr/local/bin/fzf-find"
+    chmod 755 /usr/local/bin/fzf-find
+
+    symlink "imgcat" "${DOTFILES_REPO}/bin/imgcat" "/usr/local/bin/imgcat"
+    chmod 755 /usr/local/bin/imgcat
+
+    symlink "screenshot" "${DOTFILES_REPO}/bin/screenshot" "/usr/local/bin/screenshot"
+    chmod 755 /usr/local/bin/screenshot
+
+    # symlink "hushlogin" /dev/null ~/.hushlogin
+
+    # symlink "fish:completions" ${DOTFILES_REPO}/fish/completions ~/.config/fish/completions
+    # symlink "fish:functions"   ${DOTFILES_REPO}/fish/functions   ~/.config/fish/functions
+    # symlink "fish:config.fish" ${DOTFILES_REPO}/fish/config.fish ~/.config/fish/config.fish
+    # symlink "fish:oh_my_fish"  ${DOTFILES_REPO}/fish/oh_my_fish  ~/.config/omf
 
     success "Symlinks successfully setup"
 }
