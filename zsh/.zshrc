@@ -76,7 +76,7 @@ COMPLETION_WAITING_DOTS="true"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
-# ZSH_DISABLE_COMPFIX="true"
+ZSH_DISABLE_COMPFIX="true"
 
 # Have alias-finder run automatically before each command.
 ZSH_ALIAS_FINDER_AUTOMATIC="true"
@@ -87,7 +87,9 @@ source ~/.variables.zsh
 # Activate zsh plugins
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
-
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+bindkey '^[OA' history-substring-search-up
+bindkey '^[OB' history-substring-search-down
 # Which plugins would you like to load?
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
@@ -133,10 +135,6 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
-source ~/.p10k.zsh
-source ~/.iterm2.zsh
-source ~/.fzf.zsh
-source /Users/vdeantoni/Library/Preferences/org.dystroy.broot/launcher/bash/br
 
 # zsh completions
 fpath=(/usr/local/share/zsh-completions $fpath)
@@ -154,3 +152,8 @@ vim-mode-bindkey viins -- redo '^[Z'
 
 # User Aliases
 source ~/.alias.zsh
+
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+[[ ! -f ~/.iterm2.zsh ]] || source ~/.iterm2.zsh
+[[ ! -f ~/.devtools.zsh ]] || source ~/.devtools.zsh
+[[ ! -f ~/.fzf.zsh ]] || source ~/.fzf.zsh

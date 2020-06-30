@@ -6,7 +6,7 @@ main() {
     # configure_iterm2
     configure_system
     configure_dock
-    configure_finder
+    # configure_finder
 }
 
 function configure_plist_apps() {

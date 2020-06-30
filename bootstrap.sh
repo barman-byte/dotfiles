@@ -321,6 +321,7 @@ function setup_symlinks() {
     symlink "riot" "${DOTFILES_REPO}/zsh/.riot.zsh" ~/.riot.zsh
     symlink "variable" "${DOTFILES_REPO}/zsh/.variables.zsh" ~/.variables.zsh
     symlink "zsh" "${DOTFILES_REPO}/zsh/.zshrc" ~/.zshrc
+    symlink "devtools" "${DOTFILES_REPO}/zsh/.devtools.zshrc" ~/.devtools.zshrc
 
     symlink "nodenv" "${DOTFILES_REPO}/zsh/plugins/nodenv" "$ZSH/custom/plugins/nodenv"
     symlink "zsh-vim-mode" "${DOTFILES_REPO}/zsh/plugins/zsh-vim-mode" "$ZSH/custom/plugins/zsh-vim-mode"
