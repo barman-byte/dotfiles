@@ -161,14 +161,24 @@ function configure_finder() {
 
 function quit() {
     app=$1
-    killall "$app" > /dev/null 2>&1
+#    killall "$app" > /dev/null 2>&1
+    killall "$app"
 }
 
-function open() {
+# function open() {
+#     app=$1
+#     osascript << EOM
+# tell application "$app" to activate
+# tell application "System Events" to tell process "iTerm2"
+# set frontmost to true
+# end tell
+# EOM
+# }
+
+unction open() {
     app=$1
     osascript << EOM
 tell application "$app" to activate
-tell application "System Events" to tell process "iTerm2"
 set frontmost to true
 end tell
 EOM
