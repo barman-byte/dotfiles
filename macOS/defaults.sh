@@ -175,7 +175,7 @@ function quit() {
 # EOM
 # }
 
-unction open() {
+function open() {
     app=$1
     osascript << EOM
 tell application "$app" to activate
