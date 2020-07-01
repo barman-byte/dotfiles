@@ -317,6 +317,7 @@ function setup_symlinks() {
     symlink "alias" "${DOTFILES_REPO}/zsh/.alias.zsh" ~/.alias.zsh
     symlink "fzf" "${DOTFILES_REPO}/zsh/.fzf.zsh" ~/.fzf.zsh
     symlink "iterm2" "${DOTFILES_REPO}/zsh/.iterm2.zsh" ~/.iterm2.zsh
+    symlink "iterm2" "${DOTFILES_REPO}/zsh/.iterm2_shell_integration.zsh" ~/.iterm2_shell_integration.zsh
     symlink "p10k" "${DOTFILES_REPO}/zsh/.p10k.zsh" ~/.p10k.zsh
     symlink "riot" "${DOTFILES_REPO}/zsh/.riot.zsh" ~/.riot.zsh
     symlink "variable" "${DOTFILES_REPO}/zsh/.variables.zsh" ~/.variables.zsh
